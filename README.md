@@ -236,3 +236,4 @@ Esta aplicación fue diseñada específicamente para mantener conectados a Oscar
 4. Chequea las consolas (backend y navegador) para errores
 
 **¡Mucha suerte y que disfruten la app!** ✨
+# Deployment trigger
