@@ -10,7 +10,7 @@ export const calculateSunsetTime = async (location: Location): Promise<Date> => 
     const response = await fetch(
       `https://api.sunrise-sunset.org/json?lat=${location.lat}&lng=${location.lng}&formatted=0`
     );
-    const data = await response.json();
+    const data: any = await response.json();
 
     if (data.status === 'OK') {
       return new Date(data.results.sunset);
