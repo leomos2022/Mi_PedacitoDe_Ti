@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+mi-pedacito-backend/node_modules/
+mi-pedacito-frontend/node_modules/
+
+# Production builds
+mi-pedacito-frontend/build/
+mi-pedacito-backend/dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+mi-pedacito-backend/.env
+mi-pedacito-frontend/.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Uploads (fotos locales - no subir a Git)
+mi-pedacito-backend/uploads/
+
+# Testing
+coverage/
+
+# Misc
+.npmrc
+.yarn/
