@@ -4,13 +4,21 @@ export interface Location {
   lng: number;
 }
 
+interface SunsetApiResponse {
+  status: string;
+  results: {
+    sunset: string;
+    sunrise: string;
+  };
+}
+
 export const calculateSunsetTime = async (location: Location): Promise<Date> => {
   try {
     // Usar API gratuita de sunrise-sunset.org
     const response = await fetch(
       `https://api.sunrise-sunset.org/json?lat=${location.lat}&lng=${location.lng}&formatted=0`
     );
-    const data: any = await response.json();
+    const data = await response.json() as SunsetApiResponse;
 
     if (data.status === 'OK') {
       return new Date(data.results.sunset);
