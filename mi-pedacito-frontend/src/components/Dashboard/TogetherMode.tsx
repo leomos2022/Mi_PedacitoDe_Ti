@@ -16,6 +16,7 @@ const TogetherMode: React.FC = () => {
   const { partner, isOnline } = usePartner();
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Escuchar solicitudes de Together Mode
     socketService.onTogetherModeRequest((data) => {

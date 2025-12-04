@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Photo } from '../../types';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -18,16 +18,7 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ category, title, emoj
   const [photoIndex, setPhotoIndex] = useState(0);
   const { user } = useAuth();
 
-  useEffect(() => {
-    loadPhotos();
-
-    // Escuchar nuevas fotos en tiempo real
-    socketService.onPhotoUploaded(() => {
-      loadPhotos();
-    });
-  }, [category]);
-
-  const loadPhotos = async () => {
+  const loadPhotos = useCallback(async () => {sync () => {
     try {
       // Usar el endpoint de categoría cuando esté disponible
       const response = await api.getAllPhotos(50, 0);
@@ -41,7 +32,16 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ category, title, emoj
     } finally {
       setLoading(false);
     }
-  };
+  }, [category]);
+
+  useEffect(() => {
+    loadPhotos();
+
+    // Escuchar nuevas fotos en tiempo real
+    socketService.onPhotoUploaded(() => {
+      loadPhotos();
+    });
+  }, [loadPhotos]);
 
   const openPhotoModal = (photo: Photo, index: number) => {
     setSelectedPhoto(photo);
