@@ -18,7 +18,7 @@ const CategoryGallery: React.FC<CategoryGalleryProps> = ({ category, title, emoj
   const [photoIndex, setPhotoIndex] = useState(0);
   const { user } = useAuth();
 
-  const loadPhotos = useCallback(async () => {sync () => {
+  const loadPhotos = useCallback(async () => {
     try {
       // Usar el endpoint de categoría cuando esté disponible
       const response = await api.getAllPhotos(50, 0);
