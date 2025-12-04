@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Layout/Header';
 import TogetherMode from '../components/Dashboard/TogetherMode';
 import PhotoGallery from '../components/Dashboard/PhotoGallery';
-import CategoryGallery from '../components/Dashboard/CategoryGallery';
 
 const Home: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'together' | 'shared' | 'sunsets'>('all');
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -20,78 +17,7 @@ const Home: React.FC = () => {
 
           {/* Photo Gallery - Main Content */}
           <div className="lg:col-span-2">
-            {/* Tabs de navegación */}
-            <div className="bg-white rounded-2xl shadow-lg mb-6 p-2">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setActiveTab('all')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${
-                    activeTab === 'all'
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  📸 Todas
-                </button>
-                <button
-                  onClick={() => setActiveTab('together')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${
-                    activeTab === 'together'
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  💞 Juntos
-                </button>
-                <button
-                  onClick={() => setActiveTab('shared')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${
-                    activeTab === 'shared'
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  📷 Compartida
-                </button>
-                <button
-                  onClick={() => setActiveTab('sunsets')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${
-                    activeTab === 'sunsets'
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  🌅 Atardeceres
-                </button>
-              </div>
-            </div>
-
-            {/* Contenido según el tab activo */}
-            {activeTab === 'all' && <PhotoGallery />}
-            {activeTab === 'together' && (
-              <CategoryGallery
-                category="together_mode"
-                title="Modo Juntos"
-                emoji="💞"
-                description="Momentos especiales que compartieron juntos"
-              />
-            )}
-            {activeTab === 'shared' && (
-              <CategoryGallery
-                category="shared_gallery"
-                title="Galería Compartida"
-                emoji="📷"
-                description="Fotos del día a día que quieren compartir"
-              />
-            )}
-            {activeTab === 'sunsets' && (
-              <CategoryGallery
-                category="synchronized_sunsets"
-                title="Atardeceres Sincronizados"
-                emoji="🌅"
-                description="Atardeceres que vieron al mismo tiempo"
-              />
-            )}
+            <PhotoGallery />
           </div>
         </div>
 
