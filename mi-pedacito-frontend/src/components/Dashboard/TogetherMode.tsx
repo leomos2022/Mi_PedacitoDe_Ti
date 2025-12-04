@@ -16,7 +16,6 @@ const TogetherMode: React.FC = () => {
   const { partner, isOnline } = usePartner();
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Escuchar solicitudes de Together Mode
     socketService.onTogetherModeRequest((data) => {
@@ -58,6 +57,7 @@ const TogetherMode: React.FC = () => {
         }
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stream, processor, audioContext]);
 
   const playReceivedAudio = (audioData: any) => {
