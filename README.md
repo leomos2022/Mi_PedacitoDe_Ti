@@ -237,3 +237,4 @@ Esta aplicación fue diseñada específicamente para mantener conectados a Oscar
 
 **¡Mucha suerte y que disfruten la app!** ✨
 # Deployment trigger
+# Deploy trigger
