@@ -25,8 +25,32 @@ const server = http.createServer(app);
 const io = initializeSocket(server);
 
 // Middleware
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'http://localhost:3000',
+  'https://mi-pedacito-de-ti.netlify.app',
+  /https:\/\/.*--mi-pedacito-de-ti\.netlify\.app$/ // Permite preview deploys de Netlify
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    // Permitir requests sin origin (como mobile apps o curl)
+    if (!origin) return callback(null, true);
+    
+    // Verificar si el origin está permitido
+    const isAllowed = allowedOrigins.some(allowedOrigin => {
+      if (typeof allowedOrigin === 'string') {
+        return allowedOrigin === origin;
+      }
+      // Si es una RegExp, probar el patrón
+      return allowedOrigin.test(origin);
+    });
+    
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
